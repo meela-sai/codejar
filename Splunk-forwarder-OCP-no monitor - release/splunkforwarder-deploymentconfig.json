@@ -1,0 +1,678 @@
+{
+	"apiVersion": "apps.openshift.io/v1",
+	"kind": "DeploymentConfig",
+	"metadata": {
+		"labels": {
+			"app": "splunkforwarder"
+		},
+		"name": "splunkforwarder",
+		"namespace": "bridges-services-test-lower-ns"
+	},
+	"spec": {
+		"replicas": 1,
+		"selector": {
+			"app": "splunkforwarder"
+		},
+		"strategy": {
+			"activeDeadlineSeconds": 21600,
+			"resources": {
+				"limits": {
+					"cpu": "50m",
+					"memory": "512Mi"
+				},
+				"requests": {
+					"cpu": "50m",
+					"memory": "512Mi"
+				}
+			},
+			"rollingParams": {
+				"intervalSeconds": 1,
+				"maxSurge": "25%",
+				"maxUnavailable": "25%",
+				"timeoutSeconds": 600,
+				"updatePeriodSeconds": 1
+			},
+			"type": "Rolling"
+		},
+		"template": {
+			"metadata": {
+				"creationTimestamp": null,
+				"labels": {
+					"app": "splunkforwarder"
+				}
+			},
+			"spec": {
+				"containers": [{
+					"image": "quay.state.mi.us/bridges-release/bridges-services-release:splunk-forwarder",
+					"imagePullPolicy": "IfNotPresent",
+					"name": "splunkforwarder",
+					"resources": {
+						"limits": {
+							"cpu": "50m",
+							"memory": "512Mi"
+						},
+						"requests": {
+							"cpu": "50m",
+							"memory": "512Mi"
+						}
+					},
+					"terminationMessagePath": "/dev/termination-log",
+					"terminationMessagePolicy": "File",
+					"volumeMounts": [{
+							"mountPath": "/opt/splunkforwarder/logs/brg2qb/afbprefillinformation-service",
+							"name": "afbprefillinformation-service-brg2qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg2qb/appointment-service",
+							"name": "appointment-service-brg2qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg2qb/bridges-identifier-service",
+							"name": "bridges-identifier-service-brg2qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg2qb/documenttitle-service",
+							"name": "documenttitle-service-brg2qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg2qb/electronic-document-service",
+							"name": "electronic-document-service-brg2qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg2qb/ecfdocument-service",
+							"name": "ecfdocument-service-brg2qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg2qb/indvhohstatus-service",
+							"name": "indvhohstatus-service-brg2qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg2qb/optin-service",
+							"name": "optin-service-brg2qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg2qb/rmprefill-service",
+							"name": "rmprefill-service-brg2qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg2qb/self-service",
+							"name": "self-service-brg2qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg2qb/shared-services",
+							"name": "shared-services-brg2qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg2qb/subsequent-processing-service",
+							"name": "subsequent-processing-service-brg2qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg2qb/vcl-service",
+							"name": "vcl-service-brg2qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg2qb/viewbenefits-service",
+							"name": "viewbenefits-service-brg2qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg2qb/viewcorrespondence-service",
+							"name": "viewcorrespondence-service-brg2qb"
+						}, {
+							"mountPath": "/opt/splunkforwarder/logs/brg1qb/afbprefillinformation-service",
+							"name": "afbprefillinformation-service-brg1qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1qb/appointment-service",
+							"name": "appointment-service-brg1qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1qb/bridges-identifier-service",
+							"name": "bridges-identifier-service-brg1qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1qb/documenttitle-service",
+							"name": "documenttitle-service-brg1qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1qb/electronic-document-service",
+							"name": "electronic-document-service-brg1qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1qb/ecfdocument-service",
+							"name": "ecfdocument-service-brg1qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1qb/indvhohstatus-service",
+							"name": "indvhohstatus-service-brg1qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1qb/optin-service",
+							"name": "optin-service-brg1qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1qb/rmprefill-service",
+							"name": "rmprefill-service-brg1qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1qb/self-service",
+							"name": "self-service-brg1qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1qb/shared-services",
+							"name": "shared-services-brg1qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1qb/subsequent-processing-service",
+							"name": "subsequent-processing-service-brg1qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1qb/vcl-service",
+							"name": "vcl-service-brg1qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1qb/viewbenefits-service",
+							"name": "viewbenefits-service-brg1qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1qb/viewcorrespondence-service",
+							"name": "viewcorrespondence-service-brg1qb"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1ub/afbprefillinformation-service",
+							"name": "afbprefillinformation-service-brg1ub"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1ub/appointment-service",
+							"name": "appointment-service-brg1ub"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1ub/bridges-identifier-service",
+							"name": "bridges-identifier-service-brg1ub"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1ub/documenttitle-service",
+							"name": "documenttitle-service-brg1ub"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1ub/electronic-document-service",
+							"name": "electronic-document-service-brg1ub"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1ub/ecfdocument-service",
+							"name": "ecfdocument-service-brg1ub"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1ub/indvhohstatus-service",
+							"name": "indvhohstatus-service-brg1ub"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1ub/optin-service",
+							"name": "optin-service-brg1ub"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1ub/rmprefill-service",
+							"name": "rmprefill-service-brg1ub"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1ub/self-service",
+							"name": "self-service-brg1ub"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1ub/shared-services",
+							"name": "shared-services-brg1ub"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1ub/subsequent-processing-service",
+							"name": "subsequent-processing-service-brg1ub"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1ub/vcl-service",
+							"name": "vcl-service-brg1ub"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1ub/viewbenefits-service",
+							"name": "viewbenefits-service-brg1ub"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1ub/viewcorrespondence-service",
+							"name": "viewcorrespondence-service-brg1ub"
+						}, {
+							"mountPath": "/opt/splunkforwarder/logs/brg1prdi/afbprefillinformation-service",
+							"name": "afbprefillinformation-service-brg1prdi"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1prdi/appointment-service",
+							"name": "appointment-service-brg1prdi"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1prdi/bridges-identifier-service",
+							"name": "bridges-identifier-service-brg1prdi"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1prdi/documenttitle-service",
+							"name": "documenttitle-service-brg1prdi"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1prdi/electronic-document-service",
+							"name": "electronic-document-service-brg1prdi"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1prdi/ecfdocument-service",
+							"name": "ecfdocument-service-brg1prdi"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1prdi/indvhohstatus-service",
+							"name": "indvhohstatus-service-brg1prdi"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1prdi/optin-service",
+							"name": "optin-service-brg1prdi"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1prdi/rmprefill-service",
+							"name": "rmprefill-service-brg1prdi"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1prdi/self-service",
+							"name": "self-service-brg1prdi"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1prdi/shared-services",
+							"name": "shared-services-brg1prdi"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1prdi/subsequent-processing-service",
+							"name": "subsequent-processing-service-brg1prdi"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1prdi/vcl-service",
+							"name": "vcl-service-brg1prdi"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1prdi/viewbenefits-service",
+							"name": "viewbenefits-service-brg1prdi"
+						},
+						{
+							"mountPath": "/opt/splunkforwarder/logs/brg1prdi/viewcorrespondence-service",
+							"name": "viewcorrespondence-service-brg1prdi"
+						}
+
+
+					]
+				}],
+				"dnsPolicy": "ClusterFirst",
+				"imagePullSecrets": [{
+					"name": "bridges-release-app-release-pull-secret-pull-secret"
+				}],
+				"restartPolicy": "Always",
+				"schedulerName": "default-scheduler",
+				"securityContext": {},
+				"terminationGracePeriodSeconds": 30,
+				"volumes": [{
+						"name": "afbprefillinformation-service-brg2qb",
+						"persistentVolumeClaim": {
+							"claimName": "afbprefillinformation-service-brg2qb"
+						}
+					},
+					{
+						"name": "appointment-service-brg2qb",
+						"persistentVolumeClaim": {
+							"claimName": "appointment-service-brg2qb"
+						}
+					},
+					{
+						"name": "bridges-identifier-service-brg2qb",
+						"persistentVolumeClaim": {
+							"claimName": "bridges-identifier-service-brg2qb"
+						}
+					},
+					{
+						"name": "documenttitle-service-brg2qb",
+						"persistentVolumeClaim": {
+							"claimName": "documenttitle-service-brg2qb"
+						}
+					},
+					{
+						"name": "electronic-document-service-brg2qb",
+						"persistentVolumeClaim": {
+							"claimName": "electronic-document-service-brg2qb"
+						}
+					},
+					{
+						"name": "ecfdocument-service-brg2qb",
+						"persistentVolumeClaim": {
+							"claimName": "ecfdocument-service-brg2qb"
+						}
+					},
+					{
+						"name": "indvhohstatus-service-brg2qb",
+						"persistentVolumeClaim": {
+							"claimName": "indvhohstatus-service-brg2qb"
+						}
+					},
+					{
+						"name": "optin-service-brg2qb",
+						"persistentVolumeClaim": {
+							"claimName": "optin-service-brg2qb"
+						}
+					},
+					{
+						"name": "rmprefill-service-brg2qb",
+						"persistentVolumeClaim": {
+							"claimName": "rmprefill-service-brg2qb"
+						}
+					},
+					{
+						"name": "self-service-brg2qb",
+						"persistentVolumeClaim": {
+							"claimName": "self-service-brg2qb"
+						}
+					},
+					{
+						"name": "shared-services-brg2qb",
+						"persistentVolumeClaim": {
+							"claimName": "shared-services-brg2qb"
+						}
+					},
+					{
+						"name": "subsequent-processing-service-brg2qb",
+						"persistentVolumeClaim": {
+							"claimName": "subsequent-processing-service-brg2qb"
+						}
+					},
+					{
+						"name": "vcl-service-brg2qb",
+						"persistentVolumeClaim": {
+							"claimName": "vcl-service-brg2qb"
+						}
+					},
+					{
+						"name": "viewbenefits-service-brg2qb",
+						"persistentVolumeClaim": {
+							"claimName": "viewbenefits-service-brg2qb"
+						}
+					},
+					{
+						"name": "viewcorrespondence-service-brg2qb",
+						"persistentVolumeClaim": {
+							"claimName": "viewcorrespondence-service-brg2qb"
+						}
+					},
+					{
+						"name": "afbprefillinformation-service-brg1qb",
+						"persistentVolumeClaim": {
+							"claimName": "afbprefillinformation-service-brg1qb"
+						}
+					},
+					{
+						"name": "appointment-service-brg1qb",
+						"persistentVolumeClaim": {
+							"claimName": "appointment-service-brg1qb"
+						}
+					},
+					{
+						"name": "bridges-identifier-service-brg1qb",
+						"persistentVolumeClaim": {
+							"claimName": "bridges-identifier-service-brg1qb"
+						}
+					},
+					{
+						"name": "documenttitle-service-brg1qb",
+						"persistentVolumeClaim": {
+							"claimName": "documenttitle-service-brg1qb"
+						}
+					},
+					{
+						"name": "electronic-document-service-brg1qb",
+						"persistentVolumeClaim": {
+							"claimName": "electronic-document-service-brg1qb"
+						}
+					},
+					{
+						"name": "ecfdocument-service-brg1qb",
+						"persistentVolumeClaim": {
+							"claimName": "ecfdocument-service-brg1qb"
+						}
+					},
+					{
+						"name": "indvhohstatus-service-brg1qb",
+						"persistentVolumeClaim": {
+							"claimName": "indvhohstatus-service-brg1qb"
+						}
+					},
+					{
+						"name": "optin-service-brg1qb",
+						"persistentVolumeClaim": {
+							"claimName": "optin-service-brg1qb"
+						}
+					},
+					{
+						"name": "rmprefill-service-brg1qb",
+						"persistentVolumeClaim": {
+							"claimName": "rmprefill-service-brg1qb"
+						}
+					},
+					{
+						"name": "self-service-brg1qb",
+						"persistentVolumeClaim": {
+							"claimName": "self-service-brg1qb"
+						}
+					},
+					{
+						"name": "shared-services-brg1qb",
+						"persistentVolumeClaim": {
+							"claimName": "shared-services-brg1qb"
+						}
+					},
+					{
+						"name": "subsequent-processing-service-brg1qb",
+						"persistentVolumeClaim": {
+							"claimName": "subsequent-processing-service-brg1qb"
+						}
+					},
+					{
+						"name": "vcl-service-brg1qb",
+						"persistentVolumeClaim": {
+							"claimName": "vcl-service-brg1qb"
+						}
+					},
+					{
+						"name": "viewbenefits-service-brg1qb",
+						"persistentVolumeClaim": {
+							"claimName": "viewbenefits-service-brg1qb"
+						}
+					},
+					{
+						"name": "viewcorrespondence-service-brg1qb",
+						"persistentVolumeClaim": {
+							"claimName": "viewcorrespondence-service-brg1qb"
+						}
+					},
+					{
+						"name": "afbprefillinformation-service-brg1ub",
+						"persistentVolumeClaim": {
+							"claimName": "afbprefillinformation-service-brg1ub"
+						}
+					},
+					{
+						"name": "appointment-service-brg1ub",
+						"persistentVolumeClaim": {
+							"claimName": "appointment-service-brg1ub"
+						}
+					},
+					{
+						"name": "bridges-identifier-service-brg1ub",
+						"persistentVolumeClaim": {
+							"claimName": "bridges-identifier-service-brg1ub"
+						}
+					},
+					{
+						"name": "documenttitle-service-brg1ub",
+						"persistentVolumeClaim": {
+							"claimName": "documenttitle-service-brg1ub"
+						}
+					},
+					{
+						"name": "electronic-document-service-brg1ub",
+						"persistentVolumeClaim": {
+							"claimName": "electronic-document-service-brg1ub"
+						}
+					},
+					{
+						"name": "ecfdocument-service-brg1ub",
+						"persistentVolumeClaim": {
+							"claimName": "ecfdocument-service-brg1ub"
+						}
+					},
+					{
+						"name": "indvhohstatus-service-brg1ub",
+						"persistentVolumeClaim": {
+							"claimName": "indvhohstatus-service-brg1ub"
+						}
+					},
+					{
+						"name": "optin-service-brg1ub",
+						"persistentVolumeClaim": {
+							"claimName": "optin-service-brg1ub"
+						}
+					},
+					{
+						"name": "rmprefill-service-brg1ub",
+						"persistentVolumeClaim": {
+							"claimName": "rmprefill-service-brg1ub"
+						}
+					},
+					{
+						"name": "self-service-brg1ub",
+						"persistentVolumeClaim": {
+							"claimName": "self-service-brg1ub"
+						}
+					},
+					{
+						"name": "shared-services-brg1ub",
+						"persistentVolumeClaim": {
+							"claimName": "shared-services-brg1ub"
+						}
+					},
+					{
+						"name": "subsequent-processing-service-brg1ub",
+						"persistentVolumeClaim": {
+							"claimName": "subsequent-processing-service-brg1ub"
+						}
+					},
+					{
+						"name": "vcl-service-brg1ub",
+						"persistentVolumeClaim": {
+							"claimName": "vcl-service-brg1ub"
+						}
+					},
+					{
+						"name": "viewbenefits-service-brg1ub",
+						"persistentVolumeClaim": {
+							"claimName": "viewbenefits-service-brg1ub"
+						}
+					},
+					{
+						"name": "viewcorrespondence-service-brg1ub",
+						"persistentVolumeClaim": {
+							"claimName": "viewcorrespondence-service-brg1ub"
+						}
+					}, {
+						"name": "afbprefillinformation-service-brg1prdi",
+						"persistentVolumeClaim": {
+							"claimName": "afbprefillinformation-service-brg1prdi"
+						}
+					},
+					{
+						"name": "appointment-service-brg1prdi",
+						"persistentVolumeClaim": {
+							"claimName": "appointment-service-brg1prdi"
+						}
+					},
+					{
+						"name": "bridges-identifier-service-brg1prdi",
+						"persistentVolumeClaim": {
+							"claimName": "bridges-identifier-service-brg1prdi"
+						}
+					},
+					{
+						"name": "documenttitle-service-brg1prdi",
+						"persistentVolumeClaim": {
+							"claimName": "documenttitle-service-brg1prdi"
+						}
+					},
+					{
+						"name": "electronic-document-service-brg1prdi",
+						"persistentVolumeClaim": {
+							"claimName": "electronic-document-service-brg1prdi"
+						}
+					},
+					{
+						"name": "ecfdocument-service-brg1prdi",
+						"persistentVolumeClaim": {
+							"claimName": "ecfdocument-service-brg1prdi"
+						}
+					},
+					{
+						"name": "indvhohstatus-service-brg1prdi",
+						"persistentVolumeClaim": {
+							"claimName": "indvhohstatus-service-brg1prdi"
+						}
+					},
+					{
+						"name": "optin-service-brg1prdi",
+						"persistentVolumeClaim": {
+							"claimName": "optin-service-brg1prdi"
+						}
+					},
+					{
+						"name": "rmprefill-service-brg1prdi",
+						"persistentVolumeClaim": {
+							"claimName": "rmprefill-service-brg1prdi"
+						}
+					},
+					{
+						"name": "self-service-brg1prdi",
+						"persistentVolumeClaim": {
+							"claimName": "self-service-brg1prdi"
+						}
+					},
+					{
+						"name": "shared-services-brg1prdi",
+						"persistentVolumeClaim": {
+							"claimName": "shared-services-brg1prdi"
+						}
+					},
+					{
+						"name": "subsequent-processing-service-brg1prdi",
+						"persistentVolumeClaim": {
+							"claimName": "subsequent-processing-service-brg1prdi"
+						}
+					},
+					{
+						"name": "vcl-service-brg1prdi",
+						"persistentVolumeClaim": {
+							"claimName": "vcl-service-brg1prdi"
+						}
+					},
+					{
+						"name": "viewbenefits-service-brg1prdi",
+						"persistentVolumeClaim": {
+							"claimName": "viewbenefits-service-brg1prdi"
+						}
+					},
+					{
+						"name": "viewcorrespondence-service-brg1prdi",
+						"persistentVolumeClaim": {
+							"claimName": "viewcorrespondence-service-brg1prdi"
+						}
+					}
+				]
+			}
+		},
+		"test": false,
+		"triggers": [{
+			"type": "ConfigChange"
+		}]
+	}
+}
